@@ -1,4 +1,4 @@
-# bash notes
+# fuzzy bash notes
 
 Quick and simple personal note system written in a single bash script.
 
@@ -34,13 +34,13 @@ If you already know how to add a bash script to your PATH, skip to configuration
 
 You can use it as-is, but if you want to change something, edit the variables near the top of the script or define the following environment variables:
 
-- BNOTES_EXT: extension used when making new note files
-- BNOTES_NEW: name of the option for creating a new note
-- BNOTES_DEL: name of the option for deleting a note
-- BNOTES_MOV: name of the option for renaming a note
-- BNOTES_BIN: absolute path or name of binary to edit notes with
+- `BNOTES_EXT`: extension used when making new note files
+- `BNOTES_NEW`: name of the option for creating a new note
+- `BNOTES_DEL`: name of the option for deleting a note
+- `BNOTES_MOV`: name of the option for renaming a note
+- `BNOTES_BIN`: absolute path or name of binary to edit notes with
 
-If BIN is not set, $EDITOR will be used. If $EDITOR is not set, $VISUAL will be used.
+If `$BNOTES_BIN` is not set, `$EDITOR` will be used. If `$EDITOR` is not set, `$VISUAL` will be used.
 
 # Use
 
