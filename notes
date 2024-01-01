@@ -8,7 +8,6 @@ notes_fmt=${BNOTES_EXT:-'md'}
 notes_new=${BNOTES_NEW:-'CREATE NEW NOTE'}
 notes_del=${BNOTES_DEL:-'DELETE EXISTING NOTE(s)'}
 notes_mov=${BNOTES_MOV:-'RENAME EXISTING NOTE'}
-notes_bin=$BNOTES_BIN
 fzf_opts='--preview-window=right:75%:wrap'
 bat_opts='--style=numbers --color=always'
 
@@ -92,7 +91,7 @@ while : ; do
 	[ "$note" == "$notes_del" ] && del_note && continue
 	[ "$note" == "$notes_mov" ] && rename_note && continue
 	[ "$note" == "$notes_new" ] && new_note
-	[ -n "$note" ] && "${notes_bin:-${EDITOR:-$VISUAL}}" "$note"
+	[ -n "$note" ] && "${BNOTES_BIN:-${VISUAL:-$EDITOR}}" "$note"
 	[ -z "$note" ] && break
 done
 
