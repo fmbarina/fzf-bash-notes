@@ -2,8 +2,6 @@
 
 Quick and simple personal note system written in a single bash script.
 
-(will put picture here, soon...)
-
 Made to take random, small notes in Linux using a terminal. No idea how it'd work anywhere else.
 
 - Pick and search notes using [fzf](https://github.com/junegunn/fzf).
