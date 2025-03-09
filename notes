@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC2317
 
-! command -v fzf &>/dev/null && echo 'fzf not found' && exit 101
+! command -v fzf &>/dev/null && echo 'fzf not found' && exit 3
 
 notes_dir="$(xdg-user-dir DOCUMENTS)/Notes"
 notes_fmt=${BNOTES_EXT:-'md'}
@@ -24,7 +24,7 @@ prompt_yn() {
 
 clean() {
 	rm "$notes_new" "$notes_del" "$notes_mov"
-	cd - &>/dev/null || exit 2
+	cd - &>/dev/null || exit 7
 }
 
 close() {
@@ -36,7 +36,7 @@ new_note() {
 	while [ -z "$note" ]; do
 		read -r -p 'Name of new note: ' note
 	done
-	touch "$note.$notes_fmt" || exit 3
+	touch "$note.$notes_fmt" || exit 8
 	note="$note.$notes_fmt"
 }
 
@@ -50,7 +50,7 @@ del_note() {
 	for i in "${notes[@]}"; do echo "- $i" ; done
 	if prompt_yn 'Confirm deletion of note(s)?'; then
 		if command -v trash-put &>/dev/null ; then
-			trash-put "${notes[@]}" || exit 5
+			trash-put "${notes[@]}" || exit 9
 		else
 			rm "${notes[@]}"
 		fi
@@ -79,14 +79,14 @@ pick_note() {
 	fi
 }
 
-mkdir -p "$notes_dir" || exit 1
-cd "$notes_dir" || exit 2
+mkdir -p "$notes_dir" || exit 4
+cd "$notes_dir" || exit 5
 trap clean EXIT
 trap close INT
 
 note=$1
 while : ; do
-	touch "$notes_new" "$notes_del" "$notes_mov" | exit 3
+	touch "$notes_new" "$notes_del" "$notes_mov" | exit 6
 	note="$(pick_note "$note")"
 	[ "$note" == "$notes_del" ] && del_note && continue
 	[ "$note" == "$notes_mov" ] && rename_note && continue
