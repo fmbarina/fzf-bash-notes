@@ -10,6 +10,7 @@ notes_del=${BNOTES_DEL:-'DELETE EXISTING NOTE(s)'}
 notes_mov=${BNOTES_MOV:-'RENAME EXISTING NOTE'}
 fzf_opts='--preview-window=right:75%:wrap'
 bat_opts='--style=numbers --color=always'
+export FZF_DEFAULT_COMMAND='ls -1 -t'
 
 prompt_yn() {
 	while true; do
